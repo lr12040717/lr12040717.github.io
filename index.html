@@ -1,1 +1,242 @@
-<h1>凌然科技测试</h1>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Echarts集成 - 折线图</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="/src/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/src/layuiadmin/style/admin.css" media="all">
+
+
+</head>
+
+<style>
+    #LAY-index-pies {
+        width: 100%;
+        height: 310px;
+    }
+</style>
+
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-header">标准折线图</div>
+                <div class="layui-card-body">
+
+                    <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-normline">
+                        <div carousel-item id="LAY-index-normline">
+                            <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="layui-card">
+
+
+
+                <div class="layui-card-header">堆积折线图</div>
+                <div class="layui-card-body">
+
+
+
+                    <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-heapline">
+                        <div carousel-item id="LAY-index-heapline">
+                            <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">不等距折线图</div>
+                <div class="layui-card-body">
+
+                    <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-diffline">
+                        <div carousel-item id="LAY-index-diffline">
+                            <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-header">堆积面积图</div>
+
+                <div class="layui-row">
+                    <div class="layui-col-xs2">
+                        <div class="layui-card" style="text-align: center;">
+                            <div class="layui-card-header">请选选择</div>
+                            <div class="layui-card-body">
+                                <select id="dataset" lay-filter="dataset" lay-search="" style="width: 80px;" size="15"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs10">
+                        <div class="layui-card">
+                            <div class="layui-card-header">饼状图</div>
+                            <div class="layui-card-body">
+                                <div id="LAY-index-pies"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">面积图</div>
+                <div class="layui-card-body">
+
+                    <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-area">
+                        <div carousel-item id="LAY-index-area">
+                            <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">对数轴</div>
+                <div class="layui-card-body">
+
+                    <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-logline">
+                        <div carousel-item id="LAY-index-logline">
+                            <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="/src/layuiadmin/layui/layui.js"></script>
+
+<script>
+    var app=[
+        {"name": "直接访问", "value": 335},
+        {"name": "邮件营销", "value": 310},
+        {"name": "联盟广告", "value": 234},
+        {"name": "视频广告", "value": 135},
+        {"name": "搜索引擎", "value": 1548}
+    ]
+    var app01=[
+        {"name": "直接访问"},
+        {"name": "邮件营销"},
+        {"name": "联盟广告"},
+        {"name": "视频广告"},
+        {"name": "搜索引擎"}
+    ]
+</script>
+
+<script>
+    layui.config({
+        base: '/src/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+
+    }).use(['index', 'about' ,'echarts'], function(){
+        var $ = layui.$
+            ,admin = layui.admin
+            ,form = layui.form
+            ,echarts = layui.echarts;
+
+
+        $(function() {
+            // 动态创建下拉框，并获取json数据
+            $.ajax({
+                url: '/src/layuiadmin/json/about/pie01.js',  // json数据源
+                dataType: 'json',
+                success: function(data) {
+                    for (var i = 0; i < data.length; i++) {
+                        $("<option></option>")
+                            .val(data[i].id)
+                            .text(data[i].name)
+                            .appendTo($("#dataset"));
+                    }
+
+                    for (var i = 0; i < data.length; i++) {
+                        $("<option></option>")
+                            .val(data[i].id)
+                            .text(data[i].name)
+                            .appendTo($("#dataset"));
+                    }
+
+                    // 下拉框选项改变时重新获取echars数据
+                    $("#dataset").change(function() {
+                        var dataset_id = $(this).val();
+                        $.ajax({
+                            url: '/src/layuiadmin/json/about/pdata0' + dataset_id + '.js',  // echars数据源
+                            dataType: 'json',
+                            success: function(data) {
+                                // 使用data更新饼状图数据
+                                updateChart(data);
+                            },
+                            error: function() {
+                                console.error("加载数据失败！");
+                            }
+                        });
+                    });
+                },
+                error: function() {
+                    console.error("加载数据失败！");
+                }
+            });
+
+            // 初始化echars饼状图
+            var charts = echarts.init(document.getElementById('LAY-index-pies'));
+            var option = {
+                legend: {
+                    data: app01
+                },
+                series: [{
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '80%',
+                    data: app
+                }]
+            };
+            charts.setOption(option);
+
+            // 更新echars饼状图数据
+            function updateChart(data) {
+
+                charts.setOption({
+                    legend: {
+                        data: data.name
+                    },
+                    series: [{
+                        data: data
+                    }]
+                });
+            }
+        });
+
+
+        });
+
+</script>
+
+<script>
+
+</script>
+
+
+</body>
+</html>
+
+
+
