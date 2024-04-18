@@ -13,127 +13,65 @@
 <link rel="icon" href="/styles/logo/logo.ico" type="image/x-icon"/>
 </head>
 <body>
-	<div class="layui-col-md6">
-            <div class="layui-card">
-              <div class="layui-card-header">快捷方式</div>
-              <div class="layui-card-body">
-                
-                <div class="layui-carousel layadmin-carousel layadmin-shortcut">
-                  <div carousel-item>
-                    <ul class="layui-row layui-col-space10">
-                      <li class="layui-col-xs3">
-                        <a lay-href="home/homepage1.html">
-                          <i class="layui-icon layui-icon-console"></i>
-                          <cite>主页一</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="home/homepage2.html">
-                          <i class="layui-icon layui-icon-chart"></i>
-                          <cite>主页二</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="component/layer/list.html">
-                          <i class="layui-icon layui-icon-template-1"></i>
-                          <cite>弹层</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="senior/im/">
-                          <i class="layui-icon layui-icon-chat"></i>
-                          <cite>聊天</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="component/progress/index.html">
-                          <i class="layui-icon layui-icon-find-fill"></i>
-                          <cite>进度条</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="app/workorder/list.html">
-                          <i class="layui-icon layui-icon-survey"></i>
-                          <cite>工单</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="user/user/list.html">
-                          <i class="layui-icon layui-icon-user"></i>
-                          <cite>用户</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/system/website.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>设置</cite>
-                        </a>
-                      </li>
-                    </ul>
-                    <ul class="layui-row layui-col-space10">
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                      <li class="layui-col-xs3">
-                        <a lay-href="set/user/info.html">
-                          <i class="layui-icon layui-icon-set"></i>
-                          <cite>我的资料</cite>
-                        </a>
-                      </li>
-                    </ul>
-                    
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-<script src="/layui/layuiadmin/layuis/layui.js"></script>  
-  <script>
-  layui.config({
-    base: '/layui/layuiadmin/' //静态资源所在路径
+	<li class="layui-col-xs3">
+        	<a lay-href="home/homepage1.html">
+                	<i class="layui-icon layui-icon-console"></i>
+                	<cite>主页一</cite>
+        	</a>
+      	</li>
+	<button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
+	<script src="/layui/layuiadmin/layuis/layui.js"></script>  
+  	<script>
+  		layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
   }).extend({
     index: 'lib/index' //主入口模块
-  }).use(['index', 'console']);
-  </script>
+  }).use(['index', 'user'], function(){
+    var $ = layui.$
+    ,setter = layui.setter
+    ,admin = layui.admin
+    ,form = layui.form
+    ,router = layui.router()
+    ,search = router.search;
+
+    form.render();
+
+    //提交
+    form.on('submit(LAY-user-login-submit)', function(obj){
+    
+      //请求登入接口
+      admin.req({
+        url: layui.setter.base + 'json/user/login.js' //实际使用请改成服务端真实接口
+        ,data: obj.field
+        ,done: function(res){
+        
+          //请求成功后，写入 access_token
+          layui.data(setter.tableName, {
+            key: setter.request.tokenName
+            ,value: res.data.access_token
+          });
+          
+          //登入成功的提示与跳转
+          layer.msg('登入成功', {
+            offset: '15px'
+            ,icon: 1
+            ,time: 1000
+          }, function(){
+            location.href = '../'; //后台主页
+          });
+        }
+      });
+      
+    });
+    
+    
+    //实际使用时记得删除该代码
+    layer.msg('为了方便演示，用户名密码可随意输入', {
+      offset: '15px'
+      ,icon: 1
+    });
+    
+  });
+  	</script>
 </body>
 </html>
