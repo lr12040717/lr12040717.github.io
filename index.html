@@ -12,34 +12,29 @@
 <link rel="stylesheet" href="/layui/layuiadmin/layuis/css/layui.css" media="all">
 <link rel="icon" href="/styles/logo/logo.ico" type="image/x-icon"/>
 </head>
+<style>
+	.lr_logo {
+		
+	}
+</style>
 <body style="height:100%">
-	<li class="layui-col-xs3">
-        	<a lay-href="home/homepage1.html">
-                	<i class="layui-icon layui-icon-console"></i>
-                	<cite>主页一</cite>
-        	</a>
-      	</li>
-	<button id="login-button" class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
-
-
+	<div id="lr_logo" class="lr_logo"><img src="/styles/logo/logo.png" /></div>
 	<script src="/layui/layuiadmin/layuis/layui.js"></script>  
   	<script>
   		layui.config({
-        base: '/layui/layuiadmin/' //静态资源所在路径
-    }).extend({
-        index: 'lib/index' //主入口模块
-    }).use(['index'], function(){
-        var $ = layui.$
-        ,layer = layui.layer;
-
-        // 给登录按钮添加点击事件
-        $('#login-button').click(function() {
-            layer.msg('为了方便演示，用户名密码可随意输入', {
-                offset: '15px',
-                icon: 1
-            });
-        });
-    });
+        		base: '/layui/layuiadmin/' //静态资源所在路径
+    		}).extend({
+        		index: 'lib/index' //主入口模块
+    		}).use(['index'], function(){
+        		var $ = layui.$
+        		,layer = layui.layer;
+        		$('#lr_logo').click(function() {
+           			layer.msg('为了方便演示，用户名密码可随意输入', {
+               				offset: '15px',
+                			icon: 1
+            			});
+        		});
+    		});
   	</script>
 </body>
 </html>
