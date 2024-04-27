@@ -42,23 +42,5 @@
         		});
     		});
   	</script>
-	<script>
-		// 判断是否为移动设备
-		function isMobileDevice() {
-		    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-		}
-		
-		// 打开链接或提示无法打开
-		function openOrPromptLink(url,urls) {
-		    if (isMobileDevice()) {
-		        window.location.href = urls;
-		    } else {
-		        // window.location.href = url;
-		    }
-		}
-		
-		// 使用示例
-		openOrPromptLink("https://lr12040717.github.io","https://lr12040717.github.io/fonts");
-	</script>
 </body>
 </html>
