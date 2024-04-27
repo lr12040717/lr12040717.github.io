@@ -62,6 +62,9 @@
   width: 960px;
   margin: 0 auto;
 }
+@media (max-width: 768px){
+  width: 720px;
+}
 
 .main .logo {
   color: #333;
