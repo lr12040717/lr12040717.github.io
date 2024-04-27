@@ -49,16 +49,16 @@
 		}
 		
 		// 打开链接或提示无法打开
-		function openOrPromptLink(url) {
+		function openOrPromptLink(url,urls) {
 		    if (isMobileDevice()) {
-		        window.location.href = url;
+		        window.location.href = urls;
 		    } else {
-		        alert("无法在PC端打开链接");
+		        window.location.href = url;
 		    }
 		}
 		
 		// 使用示例
-		openOrPromptLink("https://lr12040717.github.io");
+		openOrPromptLink("https://lr12040717.github.io","https://lr12040717.github.io/fonts");
 	</script>
 </body>
 </html>
