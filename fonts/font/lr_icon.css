@@ -110,6 +110,11 @@
   list-style: none !important;
   cursor: default;
 }
+@media (min-width: 768px){
+  .icon_lists li {
+    width: 140px
+  }
+}
 
 .icon_lists li .code-name {
   line-height: 1.2;
