@@ -42,5 +42,23 @@
         		});
     		});
   	</script>
+	<script>
+		// 判断是否为移动设备
+		function isMobileDevice() {
+		    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+		}
+		
+		// 打开链接或提示无法打开
+		function openOrPromptLink(url) {
+		    if (isMobileDevice()) {
+		        window.location.href = url;
+		    } else {
+		        alert("无法在PC端打开链接");
+		    }
+		}
+		
+		// 使用示例
+		openOrPromptLink("https://www.example.com");
+	</script>
 </body>
 </html>
