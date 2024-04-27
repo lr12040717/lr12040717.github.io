@@ -63,7 +63,9 @@
   margin: 0 auto;
 }
 @media (max-width: 768px){
-  width: 720px;
+  .main {
+    width: 720px;
+  }
 }
 
 .main .logo {
