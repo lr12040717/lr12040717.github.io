@@ -53,8 +53,6 @@
 		            success: function (res) {
 		                if (res.code == '0') {
 		                    layer.msg("提交成功");
-				    table.reload('LAY-FileType'); //数据刷新
-		                    layer.close(index); //关闭弹层
 		                }
 		                else {
 		                    layer.msg(res.msg);
