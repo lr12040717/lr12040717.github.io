@@ -46,22 +46,22 @@
                 			icon: 1
             			});
         		});
-			$.ajax({
-		            url: 'https://lr12040717.github.io/text/api/imgs.js',
-		            method: 'GET',
-		            dataType: 'JSON',
-		            success: function (res) {
-		                if (res.code == '0') {
-		                    layer.msg(res.data.url);
-		                }
-		                else {
-		                    layer.msg(res.msg);
-		                }
-		            },
-		            error: function (data) {
-		                layer.msg("网络请求错误！");
-		            }
-		        });
+			// $.ajax({
+		 //        	url: 'https://lr12040717.github.io/text/api/imgs.js',
+		 //            	method: 'GET',
+		 //            	dataType: 'JSON',
+		 //            	success: function (res) {
+		 //                	if (res.code == '0') {
+		 //                    		layer.msg(res.data.url);
+		 //                	}
+		 //                	else {
+		 //                    		layer.msg(res.msg);
+		 //                	}
+		 //            	},
+		 //            	error: function (data) {
+		 //                	layer.msg("网络请求错误！");
+		 //            	}
+		 //        });
     		});
   	</script>
 </body>
