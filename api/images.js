@@ -11,6 +11,5 @@
 		"name": "logo",
 		"images": "/styles/logo/logos.png",
 		"display": "false"
-	}],
-	"logo": "/styles/logo/logos.png",
+	}]
 }  
