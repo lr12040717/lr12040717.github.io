@@ -52,8 +52,11 @@
 		            	dataType: 'JSON',
 		            	success: function (res) {
 		                	if (res.code == '0') {
-						layer.msg(res.data.url);
-						console.log(res.lr_images.url)
+						layer.msg(res.msg, {
+		               				offset: '60px',
+		                			icon: 1
+		            			});
+						console.log(res.data)
 		                	}
 		                	else {
 		                    		layer.msg(res.msg);
