@@ -16,5 +16,5 @@
 		"address":"中国",
 		"statusname":"正常",
 		"img":"/styles/logo/logos.png",
-	}],
+	}]
 }
