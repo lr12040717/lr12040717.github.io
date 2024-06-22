@@ -46,22 +46,25 @@
                 			icon: 1
             			});
         		});
-			var userAgent = navigator.userAgent.toLowerCase();
-			if (userAgent.match(/(iphone|ipod|android|ios|mobile)/)) {
-				layer.msg("手机端");
-			} else {
-   				layer.msg("电脑端");
-			}
+			
 			$.ajax({
 		        	url: 'https://lr12040717.github.io/api/images.js',
 		            	method: 'GET',
 		            	dataType: 'JSON',
 		            	success: function (res) {
 		                	if (res.code == '0') {
-						layer.msg(res.msg, {
-		               				offset: '60px',
-		                			icon: 1
-		            			});
+						var userAgent = navigator.userAgent.toLowerCase();
+						if (userAgent.match(/(iphone|ipod|android|ios|mobile)/)) {
+							layer.msg(res.msg + "手机端", {
+			               				offset: '60px',
+			                			icon: 1
+			            			});
+						} else {
+							layer.msg(res.msg + "电脑端", {
+			               				offset: '60px',
+			                			icon: 1
+			            			});
+						}
 		                	}
 		                	else {
 		                    		layer.msg(res.msg);
