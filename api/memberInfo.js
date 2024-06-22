@@ -2,7 +2,7 @@
 	"code":0,
 	"msg":"",
 	"count":"0",
-	"data":{
+	"data":[{
 		"id":1,
 		"account":"lr12040717.github.io",
 		"pass":"lr12040717.github.io",
@@ -16,5 +16,5 @@
 		"address":"中国",
 		"statusname":"正常",
 		"img":"/styles/logo/logos.png",
-	},
+	}],
 }
