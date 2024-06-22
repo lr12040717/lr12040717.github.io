@@ -1,4 +1,4 @@
-{							
+{
 	"code":0,
 	"msg":"",
 	"count":"0",
@@ -15,6 +15,6 @@
 		"Rank":1,
 		"address":"中国",
 		"statusname":"正常",
-		"img":"/styles/logo/logos.png",
+		"img":"/styles/logo/logos.png"
 	}]
 }
