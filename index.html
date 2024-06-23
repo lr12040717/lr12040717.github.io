@@ -29,9 +29,11 @@
 		filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 1));
 	}
 </style>
-<body class="lr_body">
+<body class="lr_body layui-container">
 	<div class="lr_logo"><img id="lr_logo" src="/styles/logo/logos.png" /></div>
 	<script src="/layui/layuiadmin/layuis/layui.js"></script>  
+	<script src="/styles/js/jquery.particleground.min.js"></script> 
+	
   	<script>
   		layui.config({
         		base: '/layui/layuiadmin/' //静态资源所在路径
@@ -75,6 +77,13 @@
 		            	}
 		        });
     		});
+
+		$(document).ready(function(){
+            $('.layui-container').particleground({
+                dotColor:'#7ec7fd',
+                lineColor:'#7ec7fd'
+            });
+        });
   	</script>
 </body>
 </html>
