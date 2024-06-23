@@ -14,7 +14,6 @@
 </head>
 <style>
 	.lr_body {
-		height:100vh;
 		background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(/styles/logo/lr_login_bg.jpg) no-repeat center top;
 	}
 	.lr_logo {
@@ -30,7 +29,9 @@
 	}
 </style>
 <body class="lr_body">
-	<div class="lr_logo"><img id="lr_logo" src="/styles/logo/logos.png" /></div>
+	<div class="layui-container">
+		<div class="lr_logo"><img id="lr_logo" src="/styles/logo/logos.png" /></div>
+	</div>
 	<script src="/layui/layuiadmin/layuis/layui.js"></script>  
 	<script src="/styles/js/jquery-3.4.1.min.js"></script> 
 	<script src="/styles/js/jquery.particleground.min.js"></script> 
@@ -81,7 +82,7 @@
 			
     		});
 $(document).ready(function(){
-            $('.lr_body').particleground({
+            $('.layui-container').particleground({
                 dotColor:'#7ec7fd',
                 lineColor:'#7ec7fd'
             });
