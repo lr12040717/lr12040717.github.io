@@ -53,14 +53,14 @@
 					<label class="layui-form-label">手机号:</label>
 					<div class="layui-input-block">
 						<label class="lr_icon_content layui-icon layui-icon-cellphone"></label>
-						<input type="text" name="userPhone" lay-verify="phones" maxlength="11" class="layui-input lr_icon_content_input">
+						<input type="text" name="userPhone" lay-verify="phones" maxlength="11" class="layui-input lr_icon_content_input phones">
 					</div>
 				</div>
 				<div class="layui-form-item lr_form_item">
 					<label class="layui-form-label">密&nbsp;&nbsp;&nbsp;码:</label>
 					<div class="layui-input-block">
 						<label class="lr_icon_content layui-icon layui-icon-password"></label>
-						<input type="password" name="password" lay-verify="Password" maxlength="12" class="layui-input lr_icon_content_input">
+						<input type="password" name="password" lay-verify="Password" maxlength="12" class="layui-input lr_icon_content_input password">
 					</div>
 				</div>
 				<div class="layui-form-item lr_form_item">
@@ -137,7 +137,6 @@
             		});
         	});
 
-
 		form.on('submit(lr_login_submit)', function(obj){
 			//提交申请时间
 			$.ajax({
@@ -148,10 +147,13 @@
 			        success: function (res) {
 					let data = res.data[0];
 					if(!(data.phone == obj.field.userPhone)) {
+						$('.phones').focus();
 						layer.msg('手机号输入错误', {offset: '80px', icon: 5, time: 1000});
 					}else if(!(data.pass == obj.field.password)) {
+						$('.password').focus();
 						layer.msg('密码输入错误', {offset: '80px', icon: 5, time: 1000});
 					}else if(!(data.codes == obj.field.codes)) {
+						$('.codes').focus();
 						layer.msg('验证码输入错误', {offset: '80px', icon: 5, time: 1000});
 					}else {
 						layer.msg('登入成功', {
