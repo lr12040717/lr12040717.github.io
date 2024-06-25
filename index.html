@@ -36,30 +36,139 @@
 		filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 1));
 	}
 </style>
-<body class="lr_body">
-	<div class="lr_container">
-		<div class="lr_logo"><img id="lr_logo" src="/styles/logo/logos.png" /></div>
+<body class="lr_body lr_container">
+	<div class="layui-form lr_user_login layui-form-pane">
+		<div class="lr_user_login_box">
+			<div class="lr_user_login_top">
+				<div class="lr_user_login_top_item" id="lr_logo">
+					<div class="lr_user_login_top_img">
+						<img src="https:/lr12040717.github.io/styles/logo/logos.png">
+					</div>
+					<div class="lr_user_login_top_title">凌然科技</div>
+				</div>
+			</div>
+			<div class="lr_user_login_content">
+				<div class="layui-form-item lr_form_item">
+					<label class="layui-form-label">手机号:</label>
+					<div class="layui-input-block">
+						<label class="lr_icon_content layui-icon layui-icon-cellphone"></label>
+						<input type="text" name="userPhone" lay-verify="phones" maxlength="11" class="layui-input lr_icon_content_input">
+					</div>
+				</div>
+				<div class="layui-form-item lr_form_item">
+					<label class="layui-form-label">密&nbsp;&nbsp;&nbsp;码:</label>
+					<div class="layui-input-block">
+						<label class="lr_icon_content layui-icon layui-icon-password"></label>
+						<input type="password" name="password" lay-verify="Password" maxlength="12" class="layui-input lr_icon_content_input">
+					</div>
+				</div>
+				<div class="layui-form-item lr_form_item">
+					<div class="layui-row">
+						<div class="layui-col-xs8">
+							<label class="layui-form-label">验证码:</label>
+							<div class="layui-input-block">
+								<label class="lr_icon_content layui-icon layui-icon-vercode"></label>
+								<input name="codes" lay-verify="codes" id="codes" maxlength="4" class="layui-input lr_icon_content_input codes">
+							</div>
+						</div>
+						<div class="layui-col-xs4">
+							<div class="lr_user_login_codeBtn">
+								验证码
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item lr_form_item">
+					<button class="layui-btn lr_user_login_btn" lay-submit="" lay-filter="lr_login_submit" id="lr_login_submit">登入</button>
+				</div>
+			</div>
+		</div>
 	</div>
-	<script src="/layui/layuiadmin/layuis/layui.js"></script>  
-	<script src="/styles/js/jquery-3.4.1.min.js"></script> 
-	<script src="/styles/js/jquery.particleground.min.js"></script> 
-  	<script>
-  		layui.config({
-        		base: '/layui/layuiadmin/' //静态资源所在路径
-    		}).extend({
-        		index: 'lib/index' //主入口模块
-    		}).use(['index'], function(){
-        		var $ = layui.$
-        		,layer = layui.layer;
-        		$('#lr_logo').click(function() {
-           			layer.msg('你大爷的、滚！', {
-               				offset: '60px',
-                			icon: 1
-            			});
-        		});
-			
+</body> 
+<script src="/layui/layuiadmin/layuis/layui.js"></script>  
+<script src="/styles/js/jquery-3.4.1.min.js"></script> 
+<script src="/styles/js/jquery.particleground.min.js"></script> 
+<script>
+	layui.config({
+       		base: '/layui/layuiadmin/' //静态资源所在路径
+	}).extend({
+       		index: 'lib/index' //主入口模块
+	}).use(['index'], function(){
+       		var $ = layui.$
+       		,layer = layui.layer;
+
+		form.verify({
+			phones: function(value, item) {
+				var phoneZZ = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+				if (!phoneZZ.test(value)) {
+					$(item).focus();
+					return '请输入正确手机号';
+				}
+			},
+			Password: function(value, item){
+				var passwordZZ = /^[\S]{6,12}$/
+				if(!passwordZZ.test(value)){
+					$(item).focus();
+					return '请输入正确的6~12密码';
+			        }
+			},
+			codes: function(value, item){
+				if(!(value.length == 4)){
+					$(item).focus();
+					return '请输入正确验证码';
+				}
+			}
+	        });
+		
+		$('.lr_user_login_codeBtn').click(function () {
+			var codes = $('.codes').val();
+			if(!(codes.length == 4)){
+				$('.codes').focus();
+				layer.msg('请输入正确验证码', {offset: '80px',icon: 5,time: 3000});
+			}
+		});
+		
+       		$('#lr_logo').click(function() {
+       			layer.msg('你大爷的、滚！', {
+         			offset: '60px',
+                		icon: 1
+            		});
+        	});
+
+
+		form.on('submit(lr_login_submit)', function(obj){
+			//提交申请时间
 			$.ajax({
-		        	url: 'https://lr12040717.github.io/api/images.js',
+				url: 'https://lr12040717.github.io/api/memberInfo.js',
+				data: obj.field,
+			        method: 'get',
+			        dataType: 'JSON',
+			        success: function (res) {
+					let data = res.data[0];
+					if(!(data.phone == obj.field.userPhone)) {
+						layer.msg('手机号输入错误', {offset: '80px', icon: 5, time: 1000});
+					}else if(!(data.pass == obj.field.password)) {
+						layer.msg('密码输入错误', {offset: '80px', icon: 5, time: 1000});
+					}else if(!(data.codes == obj.field.codes)) {
+						layer.msg('验证码输入错误', {offset: '80px', icon: 5, time: 1000});
+					}else {
+						layer.msg('登入成功', {
+							offset: '80px'
+							, icon: 1
+							, time: 1000
+						}, function () {
+							location.href = '#'; //后台主页
+						});
+					}
+				},
+				error: function (data) {
+					layer.msg("网络请求错误！",{icon: 5});
+				}
+			});
+		});
+		
+		$.ajax({
+		        url: 'https://lr12040717.github.io/api/images.js',
 		            	method: 'GET',
 		            	dataType: 'JSON',
 		            	success: function (res) {
@@ -85,15 +194,12 @@
 		                	layer.msg("网络请求错误！");
 		            	}
 		        });
-
-			
     		});
 		$(document).ready(function(){
             		$('.lr_container').particleground({
-                		dotColor:'#eeeeee',
-                		lineColor:'#eeeeee'
-            		});
-        	});
-  	</script>
-</body>
+                	dotColor:'#eeeeee',
+                	lineColor:'#eeeeee'
+            	});
+        });
+</script>
 </html>
