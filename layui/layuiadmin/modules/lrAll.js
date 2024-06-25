@@ -40,7 +40,7 @@ layui.define(function(exports){
 	               	layer.msg("网络请求错误！");
           	}
         });
-    });
+    };
     
     exports('lrAll', {
 	    loginTs: loginTs
