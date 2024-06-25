@@ -10,6 +10,7 @@ layui.define(function(exports){
     ,setter = layui.setter
     ,view = layui.view
     ,admin = layui.admin
+    ,form = layui.form
   
 
     exports('lrAll', {});
