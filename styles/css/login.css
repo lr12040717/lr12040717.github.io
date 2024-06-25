@@ -1,0 +1,118 @@
+  html,body {
+		background-color: #2979ff;
+		width: 100%;
+		height: 100%;
+	}
+	.lr_user_login {
+		width: 560px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		background-color: #fff;
+		border-radius: 15px;
+		box-shadow: 0 0 10px #fff
+	}
+	.lr_user_login_box {
+		padding: 15px;
+	}
+	.lr_user_login_top {
+		margin-top: -55px
+	}
+	.lr_user_login_top_item {
+		background-color: #2979ff;
+        width: 150px;
+        height: 80px;
+		line-height: 80px;
+        position: relative;
+        transform: rotate(0deg);
+        margin: 0 auto;
+		display: flex;
+    }
+
+    .lr_user_login_top_item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -40px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 40px 40px 40px 0px; 
+        border-color: transparent #2979ff transparent transparent;
+    }
+
+    .lr_user_login_top_item::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -40px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 40px 0 40px 40px;
+        border-color: transparent transparent transparent #2979ff;
+    }
+	.lr_user_login_top_img {
+		flex: 1 auto;
+	}
+	.lr_user_login_top_img img {
+		width: 42px;
+		border-radius: 50%;
+		box
+	}
+	.lr_user_login_top_title {
+		color: #fff;
+		font-size: 24px;
+		font-weight: bold
+	}
+	.lr_user_login_content {
+		margin: 50px
+	}
+	.lr_form_item {
+		margin-bottom: 20px
+	}
+	.lr_icon_content {
+		position: absolute;
+		margin: 10px 0 0 10px;
+		color: #999
+	}
+	.lr_icon_content_input {
+		padding: 0 10px 0 30px
+	}
+	.layui-input:focus, .layui-textarea:focus {
+		border-color: #2979ff !important;
+	}
+	.lr_user_login_codeBtn {
+		width: 120px;
+		height: 36px;
+		line-height: 36px;
+		text-align: center;
+		border: 1px solid #eee;
+		background-color: #2979ff;
+		color: #fff;
+		border-radius: 50px;
+		position: absolute;
+		right: 0;
+	}
+	.lr_user_login_btn {
+		width: 100%;
+		background-color: #2979ff;
+		border-radius: 50px;
+		margin-top: 10px
+	}
+	.lr_body {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(https:/lr12040717.github.io/styles/logo/lr_login_bg.jpg) no-repeat center top;
+	}
+	html,.lr_container {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	.layui-layer,.layui-layer-dialog,.layui-layer-border,.layui-layer-msg {
+		position: absolute;
+		top: 80px !important
+	}
