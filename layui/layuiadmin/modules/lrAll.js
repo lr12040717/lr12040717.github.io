@@ -21,12 +21,12 @@
 	                		var userAgent = navigator.userAgent.toLowerCase();
 	                 		if (userAgent.match(/(iphone|ipod|android|ios|mobile)/)) {
 	                 			layer.msg(res.msg + "手机端", {
-	                 			   	offset: '60px',
+	                 			   	offset: '80px',
 	                 			       	icon: 1
 	                       			});
 	                 		} else {
 	                 			layer.msg(res.msg + "电脑端", {
-	                 				offset: '60px',
+	                 				offset: '80px',
 	                 				icon: 1
 	                  			});
 	     				}
