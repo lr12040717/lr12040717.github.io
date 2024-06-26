@@ -65,7 +65,7 @@
 							, icon: 1
 							, time: 1000
 						}, function () {
-							location.href = '#'; //后台主页
+							location.href = '/layui/views/home.html'; //后台主页
 						});
 					}
 				},
