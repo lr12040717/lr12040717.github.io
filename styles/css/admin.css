@@ -518,5 +518,20 @@ html{background-color: #f2f2f2; color: #666;}
   .layui-layout-admin .layui-body .layadmin-tabsbody-item{-webkit-overflow-scrolling: touch; overflow: auto;}
 }
 
+#lr_side_menu .layui-side-menu, #lr_side_menu .layadmin-pagetabs .layui-tab-title li:after, #lr_side_menu .layadmin-pagetabs .layui-tab-title li.layui-this:after, #lr_side_menu .layui-layer-admin .layui-layer-title,  #lr_side_menu .layadmin-side-shrink .layui-side-menu .layui-nav>.layui-nav-item>.layui-nav-child {
+		background-color: #2979ff !important;
+		color: #fff;
+}
+#lr_side_menu, #lr_side_menu .layui-this, lr_side_menu .layui-nav-tree .layui-this>a, lr_side_menu .layui-nav-tree .layui-nav-child dd.layui-this, lr_side_menu .layui-nav-tree .layui-nav-child dd.layui-this a {
+		background-color: #2979ff !important;
+}
+	
+#lr_side_menu .layui-nav-tree .layui-this, #lr_side_menu .layui-nav-tree .layui-this>a, #lr_side_menu .layui-nav-tree .layui-nav-child dd.layui-this, #lr_side_menu .layui-nav-tree .layui-nav-child dd.layui-this a {
+		background-color: #2b85e4 !important;
+}
+#lr_side_menu .layui-logo {
+		background-color: #2979ff !important;
+		color: #fff;
+}
 
 
