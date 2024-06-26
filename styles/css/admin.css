@@ -223,10 +223,10 @@ html{background-color: #f2f2f2; color: #666;}
 .layui-layout-admin .layui-footer{padding: 10px 0; text-align: center;}
 
 /* 默认主题修饰 */
-.layui-layout-admin .layui-header{border-bottom: 1px solid #f6f6f6; box-sizing: border-box; background-color: #fff;}
+.layui-layout-admin .layui-header{border-bottom: 1px solid #f6f6f6; box-sizing: border-box; background-color: #2979ff;}
 .layui-layout-admin .layui-header a,
-.layui-layout-admin .layui-header a cite{color: #333;}
-.layui-layout-admin .layui-header a:hover{color: #000;}
+.layui-layout-admin .layui-header a cite{color: #fff;}
+.layui-layout-admin .layui-header a:hover{color: #ff9900;}
 .layui-layout-admin .layui-header .layui-nav .layui-nav-more{border-top-color: #666}
 .layui-layout-admin .layui-header .layui-nav .layui-nav-mored{border-color: transparent; border-bottom-color: #666;}
 .layui-layout-admin .layui-header .layui-nav .layui-this:after, 
