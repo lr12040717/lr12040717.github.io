@@ -59,7 +59,23 @@ layui.define(function(exports){
 					console.log((res.addTime).length);
 					console.log(res.price);
 					console.log((res.price).length)
-	                		var echartsApp = [], options = [
+	                		
+		        	}
+			     	else {
+	                   			layer.msg(res.msg);
+		    		}
+	           	},
+            		error: function () {
+	               		layer.msg("网络请求错误！");
+          		}
+        	});
+   
+    
+    
+    
+    //没找到DOM，终止执行
+    if(!elemDataView[0]) return;
+    var echartsApp = [], options = [
       //今日流量趋势
       {
         title: {
@@ -168,22 +184,6 @@ layui.define(function(exports){
         echartsApp[index].resize();
       });
     };
-		        	}
-			     	else {
-	                   			layer.msg(res.msg);
-		    		}
-	           	},
-            		error: function () {
-	               		layer.msg("网络请求错误！");
-          		}
-        	});
-   
-    
-    
-    
-    //没找到DOM，终止执行
-    if(!elemDataView[0]) return;
-    
     
     
     renderDataView(0);
