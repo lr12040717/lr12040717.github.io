@@ -55,6 +55,10 @@ layui.define(function(exports){
 	       		dataType: 'JSON',
 		       	success: function (res) {
 			        if (res.code == '0') {
+					console.log(res.addTime);
+					console.log((res.addTime).length);
+					console.log(res.price);
+					console.log((res.price).length)
 	                		var echartsApp = [], options = [
       //今日流量趋势
       {
