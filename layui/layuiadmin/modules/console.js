@@ -13,7 +13,8 @@ layui.define(function(exports){
   /*
     下面通过 layui.use 分段加载不同的模块，实现不同区域的同时渲染，从而保证视图的快速呈现
   */
-  
+
+ 
   
   //区块轮播切换
   layui.use(['admin', 'carousel'], function(){
@@ -47,8 +48,14 @@ layui.define(function(exports){
     ,admin = layui.admin
     ,carousel = layui.carousel
     ,echarts = layui.echarts;
-    
-    var echartsApp = [], options = [
+
+   $.ajax({
+			url: '/api/garlicPrice.js',
+	       		method: 'GET',
+	       		dataType: 'JSON',
+		       	success: function (res) {
+			        if (res.code == '0') {
+	                		var echartsApp = [], options = [
       //今日流量趋势
       {
         title: {
@@ -157,6 +164,17 @@ layui.define(function(exports){
         echartsApp[index].resize();
       });
     };
+		        	}
+			     	else {
+	                   			layer.msg(res.msg);
+		    		}
+	           	},
+            		error: function () {
+	               		layer.msg("网络请求错误！");
+          		}
+        	});
+   
+    
     
     
     //没找到DOM，终止执行
