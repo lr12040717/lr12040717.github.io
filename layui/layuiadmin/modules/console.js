@@ -42,14 +42,7 @@ layui.define(function(exports){
     
   });
 
-  //数据概览
-  layui.use(['admin', 'carousel', 'echarts'], function(){
-    var $ = layui.$
-    ,admin = layui.admin
-    ,carousel = layui.carousel
-    ,echarts = layui.echarts;
-
-   $.ajax({
+	  $.ajax({
 			url: '/api/garlicPrice.js',
 	       		method: 'GET',
 	       		dataType: 'JSON',
@@ -69,9 +62,13 @@ layui.define(function(exports){
 	               		layer.msg("网络请求错误！");
           		}
         	});
-   
-    
-    
+
+  //数据概览
+  layui.use(['admin', 'carousel', 'echarts'], function(){
+    var $ = layui.$
+    ,admin = layui.admin
+    ,carousel = layui.carousel
+    ,echarts = layui.echarts;
     
     //没找到DOM，终止执行
     if(!elemDataView[0]) return;
