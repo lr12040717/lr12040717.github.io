@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>LineLayer图层</title>
+    <style type="text/css">
+    body,
+    html {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    #allmap {
+        height: 100%;
+        width: 100%;
+    }
+    ul li {
+        list-style: none;
+    }
+    .btn-wrap {
+        z-index: 999;
+        position: fixed;
+        bottom: 3.5rem;
+        margin-left: 3rem;
+        padding: 1rem 1rem;
+        border-radius: .25rem;
+        background-color: #fff;
+        box-shadow: 0 2px 6px 0 rgba(27, 142, 236, 0.5);
+    }
+    .btn {
+        width: 75px;
+        height: 30px;
+        float: left;
+        background-color: #fff;
+        color: rgba(27, 142, 236, 1);
+        font-size: 14px;
+        border: 1px solid rgba(27, 142, 236, 1);
+        border-radius: 5px;
+        margin: 0 5px;
+        text-align: center;
+        line-height: 30px;
+    }
+    .btn:hover {
+        background-color: rgba(27, 142, 236, 0.8);
+        color: #fff;
+    }
+    </style>
+	<script type="text/javascript" src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=h8B7iMmKiCByffr55Nt3kIgr1V9qPA1J"></script>
+</head>
+
+
+<body>
+    <div style="height: 270px;" id="allmap"></div>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    var map = new BMapGL.Map('allmap', {
+        displayOptions: {
+            poi: false,
+            poiText: false
+        }
+    });
+    var point = new BMapGL.Point(113.68970082298699,34.73127929244849);
+    map.centerAndZoom(point, 16);
+    map.enableScrollWheelZoom(true);
+    var lineLayer = null;
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+	var scaleCtrl = new BMapGL.ScaleControl();  // 添加比例尺控件
+	map.addControl(scaleCtrl);
+	var zoomCtrl = new BMapGL.ZoomControl();  // 添加缩放控件
+	map.addControl(zoomCtrl);
+	
+	var geolocation = new BMapGL.Geolocation();
+		geolocation.enableSDKLocation();
+		   var options = {
+		       enableHighAccuracy: true,
+		       timeout: 5000,
+		       maximumAge: 0
+		   };
+		   geolocation.getCurrentPosition(function(r) {
+		       if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+		           var point = new BMapGL.Point(r.point.lng, r.point.lat);   
+		           var marker = new BMapGL.Marker(point);
+		           map.addOverlay(marker);
+		           alert(r.point.lng + ',' + r.point.lat);
+		       } else {
+		           alert('未打开定位');
+		       }        
+		   }, options);
+	
+	var iconUrl = "http://www.zwhl.cn/static/uview/common/start.png"; // 替换为你的图标路径
+	var customIcon = new BMapGL.Icon(iconUrl, new BMapGL.Size(30, 30)); // 设置图标的大小
+	var point1 = new BMapGL.Point(113.68970082298699,34.73127929244849);
+	// 创建一个新的 Marker，并使用自定义图标
+	var marker1 = new BMapGL.Marker(point1, { icon: customIcon });
+	map.addOverlay(marker1);
+	
+	var iconUrl2 = "http://www.zwhl.cn/static/uview/common/end.png"; // 替换为你的图标路径
+	var customIcon2 = new BMapGL.Icon(iconUrl2, new BMapGL.Size(30, 30)); // 设置图标的大小
+	// 创建一个新的 Marker，并使用自定义图标
+	var point2 = new BMapGL.Point(113.68888439395799,34.73111671044275);
+	var marker2 = new BMapGL.Marker(point2, { icon: customIcon2 });
+	map.addOverlay(marker2);
+	
+	var iconUrl3 = "http://www.zwhl.cn/static/uview/common/people.png"; // 替换为你的图标路径
+	var customIcon3 = new BMapGL.Icon(iconUrl3, new BMapGL.Size(30, 30)); // 设置图标的大小
+	// 创建一个新的 Marker，并使用自定义图标
+	var point3 = new BMapGL.Point(113.69021082298699,34.73127929244849);
+	var marker3= new BMapGL.Marker(point3, { icon: customIcon3 });
+	map.addOverlay(marker3);
+	
+	
+    // 添加图层
+    function addLineLayer() {
+        fetch("http://www.zwhl.cn/static/common/json/location01.json").then(res => {
+            return res.json();
+        }).then(testLineData => {
+            if (!lineLayer) {
+                lineLayer = new BMapGL.LineLayer({
+                    enablePicked: true,
+                    autoSelect: true,
+                    pickWidth: 30,
+                    pickHeight: 30,
+                    selectedColor: 'yellow', // 选中项颜色
+                    style: {
+                        // borderMask: false,
+                        borderColor: '#909399',
+                        borderWeight: 2,
+                        strokeWeight: 3,
+                        strokeStyle: 'dashed',
+                        strokeColor: ['case', ['boolean', ['feature-state', 'picked'], false], '#c8c9cc', ['match', ['get', 'name'], 'demo1', '#c8c9cc', 'demo2', '#c8c9cc', 'demo3', 'blue', '#c8c9cc']],
+                    }
+                });
+            }
+            lineLayer.addEventListener('click', function (e) {
+                if (e.value.dataIndex !== -1 && e.value.dataItem) {
+                    console.log('click', e.value.dataItem);
+                    // 使用样式配置，实现单选效果
+                    // this.updateState(e.value.dataIndex, { picked: true })
+                }
+            })
+            lineLayer.setData(testLineData);
+            map.addNormalLayer(lineLayer);
+        })
+    }
+    // 移除图层
+    function removeLineLayer() {
+        map.removeNormalLayer(lineLayer);
+    }
+	// 点击获取当前经纬度
+	    map.addEventListener('click', function (e) {
+	        var lng = e.lngLat.lng; // 获取经度
+	        var lat = e.lngLat.lat; // 获取纬度
+	        document.getElementById('coordinates').innerHTML = '经度: ' + lng + '<br/>纬度: ' + lat;
+	        console.log('当前经纬度: ', lng, lat);
+	    });
+    addLineLayer();
+</script>
