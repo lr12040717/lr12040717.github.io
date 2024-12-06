@@ -92,21 +92,21 @@
 		       }        
 		   }, options);
 	
-	var iconUrl = "http://www.zwhl.cn/static/uview/common/start.png"; // 替换为你的图标路径
+	var iconUrl = "/location/start.png"; // 替换为你的图标路径
 	var customIcon = new BMapGL.Icon(iconUrl, new BMapGL.Size(30, 30)); // 设置图标的大小
 	var point1 = new BMapGL.Point(113.68970082298699,34.73127929244849);
 	// 创建一个新的 Marker，并使用自定义图标
 	var marker1 = new BMapGL.Marker(point1, { icon: customIcon });
 	map.addOverlay(marker1);
 	
-	var iconUrl2 = "http://www.zwhl.cn/static/uview/common/end.png"; // 替换为你的图标路径
+	var iconUrl2 = "/location/end.png"; // 替换为你的图标路径
 	var customIcon2 = new BMapGL.Icon(iconUrl2, new BMapGL.Size(30, 30)); // 设置图标的大小
 	// 创建一个新的 Marker，并使用自定义图标
 	var point2 = new BMapGL.Point(113.68888439395799,34.73111671044275);
 	var marker2 = new BMapGL.Marker(point2, { icon: customIcon2 });
 	map.addOverlay(marker2);
 	
-	var iconUrl3 = "http://www.zwhl.cn/static/uview/common/people.png"; // 替换为你的图标路径
+	var iconUrl3 = "/location/people.png"; // 替换为你的图标路径
 	var customIcon3 = new BMapGL.Icon(iconUrl3, new BMapGL.Size(30, 30)); // 设置图标的大小
 	// 创建一个新的 Marker，并使用自定义图标
 	var point3 = new BMapGL.Point(113.69021082298699,34.73127929244849);
@@ -116,7 +116,7 @@
 	
     // 添加图层
     function addLineLayer() {
-        fetch("http://www.zwhl.cn/static/common/json/location01.json").then(res => {
+        fetch("/location/location01.json").then(res => {
             return res.json();
         }).then(testLineData => {
             if (!lineLayer) {
