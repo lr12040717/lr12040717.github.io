@@ -86,21 +86,9 @@
 		           var point = new BMapGL.Point(r.point.lng, r.point.lat);   
 		           var marker = new BMapGL.Marker(point);
 		           map.addOverlay(marker);
-		           alert(r.point.lng + ',' + r.point.lat);
+				   alert(r.point.lng + ',' + r.point.lat);
 		       } else {
-		           switch (this.getStatus()) {
-		               case BMAP_STATUS_PERMISSION_DENIED:
-		                   alert('定位权限被拒绝');
-		                   break;
-		               case BMAP_STATUS_POSITION_UNAVAILABLE:
-		                   alert('位置不可用');
-		                   break;
-		               case BMAP_STATUS_TIMEOUT:
-		                   alert('定位请求超时');
-		                   break;
-		               default:
-		                   alert('未打开定位');
-		           }
+		           alert('未打开定位');
 		       }        
 		   }, options);
 	
