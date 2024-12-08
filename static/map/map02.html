@@ -89,7 +89,19 @@
 		           map.addOverlay(marker);
 		           alert(r.point.lng + ',' + r.point.lat);
 		       } else {
-		           alert('未打开定位');
+		           switch (this.getStatus()) {
+		               case BMAP_STATUS_PERMISSION_DENIED:
+		                   alert('定位权限被拒绝');
+		                   break;
+		               case BMAP_STATUS_POSITION_UNAVAILABLE:
+		                   alert('位置不可用');
+		                   break;
+		               case BMAP_STATUS_TIMEOUT:
+		                   alert('定位请求超时');
+		                   break;
+		               default:
+		                   alert('未打开定位');
+		           }
 		       }        
 		   }, options);
 	
