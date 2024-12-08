@@ -78,7 +78,7 @@
 		geolocation.enableSDKLocation();
 		   var options = {
 		       enableHighAccuracy: true,
-		       timeout: 10000,
+		       timeout: 5000,
 		       maximumAge: 0
 		   };
 		   geolocation.getCurrentPosition(function(r) {
@@ -86,7 +86,7 @@
 		           var point = new BMapGL.Point(r.point.lng, r.point.lat);   
 		           var marker = new BMapGL.Marker(point);
 		           map.addOverlay(marker);
-				   alert(r.point.lng + ',' + r.point.lat);
+				   // alert(r.point.lng + ',' + r.point.lat);
 		       } else {
 		           alert('未打开定位');
 		       }        
