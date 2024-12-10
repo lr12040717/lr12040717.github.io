@@ -76,29 +76,6 @@
 		            ]
 		        ]
 		    }
-		},
-		{
-		    "type": "Feature",
-		    "properties": {
-		        "name": "demo3"
-		    },
-		    "geometry": {
-		        "type": "LineString",
-		        "coordinates": [
-		            
-		        ]
-		    }
-		},
-		{
-		    "type": "Feature",
-		    "geometry": {
-		        "type": "LineString",
-		        "coordinates": [
-		            [
-						113.68970082298699,34.73127929244849
-					]
-				]
-			}
 		}
     ]
 }
